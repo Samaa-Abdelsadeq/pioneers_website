@@ -8,9 +8,12 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomeView },
     { path: '/teachers', name: 'teachers', component: TeachersView },
   ],
-  scrollBehavior(to, from, savedPosition) {
+  async scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition
-    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+    if (to.hash) {
+      await new Promise((resolve) => setTimeout(resolve, 300))
+      return { el: to.hash, behavior: 'smooth' }
+    }
     return { top: 0 }
   },
 })

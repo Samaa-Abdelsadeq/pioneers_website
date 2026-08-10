@@ -12,7 +12,8 @@ const LOOP_SECONDS = 35
 const COPIES = 4
 
 const scroller = ref(null)
-const loopedTeachers = computed(() => Array.from({ length: COPIES }, () => teachers).flat())
+const homepageTeachers = teachers.filter((t) => t.showOnHomepage)
+const loopedTeachers = computed(() => Array.from({ length: COPIES }, () => homepageTeachers).flat())
 
 let rafId = null
 let last = 0
@@ -106,7 +107,7 @@ onBeforeUnmount(() => {
           <div
             v-for="(teacher, i) in loopedTeachers"
             :key="`${teacher.id}-${i}`"
-            :aria-hidden="i >= teachers.length"
+            :aria-hidden="i >= homepageTeachers.length"
             dir="rtl"
             class="group w-64 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-dark shadow-xl shadow-black/20 transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-cta/50 hover:shadow-cta/10 sm:w-72"
           >
