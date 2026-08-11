@@ -31,7 +31,7 @@ export const siteConfig = {
 export const navLinks = [
   { label: 'الرئيسية', to: '/#home' },
   { label: 'معلمونا', to: '/teachers' },
-  { label: 'عن مركزنا', to: '/#gallery' },
+  { label: 'عن مركزنا', to: '/about' },
   { label: 'تواصل معنا', to: '/#contact' },
 ]
 
