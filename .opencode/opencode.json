@@ -9,6 +9,10 @@
         "shadcn-vue@latest",
         "mcp"
       ]
+    },
+    "huggingface": {
+      "type": "remote",
+      "url": "https://huggingface.co/mcp"
     }
   }
 }
