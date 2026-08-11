@@ -8,20 +8,24 @@ import Subjects from '../components/Subjects.vue'
 import Teachers from '../components/Teachers.vue'
 import Gallery from '../components/Gallery.vue'
 import Contact from '../components/Contact.vue'
+import CtaBanner from '../components/CtaBanner.vue'
 import Footer from '../components/Footer.vue'
+import FloatingCta from '../components/ui/FloatingCta.vue'
 </script>
 
 <template>
   <Navbar />
-  <main>
+  <main class="pb-16 sm:pb-0">
     <Hero />
     <TrustBar />
     <WhyChooseUs />
-    <PromoVideo />
     <Subjects />
     <Teachers />
+    <PromoVideo />
     <Gallery />
     <Contact />
+    <CtaBanner />
   </main>
   <Footer />
+  <FloatingCta />
 </template>

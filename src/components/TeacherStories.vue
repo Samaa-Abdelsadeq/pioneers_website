@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { teacherStories } from '../data/teacherStories'
+import Container from '@/components/layout/Container.vue'
+import { Card, CardContent } from '@/components/ui/card'
 
 const N = teacherStories.length
 const DURATION = 4500
@@ -8,7 +10,6 @@ const DURATION = 4500
 const sectionEl = ref(null)
 const current = ref(0)
 
-// صور احتياطية لحد ما صور الـ PNG الشفافة تتضاف
 const fallbackPhotos = [
   '/images/Mohamed_Abdo_teacher.jpg',
   '/images/Alaa_teacher.jpeg',
@@ -69,10 +70,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section ref="sectionEl" class="relative overflow-hidden bg-primary py-16 sm:py-20" aria-label="قصة بيونيرز">
-    <div class="vignette pointer-events-none absolute inset-0"></div>
+  <section ref="sectionEl" class="relative overflow-hidden bg-surface py-16 sm:py-20" aria-label="قصة بيونيرز">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_80%_at_50%_40%,transparent_40%,rgba(255,208,47,0.08)_100%)]" />
 
-    <div class="relative mx-auto max-w-5xl px-4 sm:px-6">
+    <Container>
       <div class="stage relative">
         <Transition name="story">
           <div :key="current" class="story-layer flex flex-col items-center lg:flex-row lg:items-start lg:justify-center">
@@ -83,7 +84,7 @@ onBeforeUnmount(() => {
               @touchstart.passive="stop"
               @touchend.passive="start"
             >
-              <div class="glow pointer-events-none absolute"></div>
+              <div class="glow pointer-events-none absolute" />
               <img
                 :src="teacherStories[current].photo"
                 :alt="teacherStories[current].name"
@@ -91,15 +92,17 @@ onBeforeUnmount(() => {
                 class="relative z-10 h-[30vh] w-auto max-w-full object-contain sm:h-[40vh] lg:h-[55vh]"
                 @error="onPhotoError($event, current)"
               />
-              <div class="contact-shadow pointer-events-none absolute"></div>
+              <div class="contact-shadow pointer-events-none absolute" />
             </div>
 
             <div class="bubble-motion order-1 mb-5 lg:order-2 lg:mt-24 lg:mb-0 lg:-ms-20">
-              <blockquote class="bubble">
-                <p class="text-base leading-loose font-semibold text-primary sm:text-lg lg:text-xl">
-                  {{ teacherStories[current].phrase }}
-                </p>
-              </blockquote>
+              <Card class="bubble border-none shadow-2xl shadow-ink-deep/10">
+                <CardContent class="p-0">
+                  <p class="text-base leading-loose font-semibold text-ink sm:text-lg lg:text-xl">
+                    {{ teacherStories[current].phrase }}
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </Transition>
@@ -111,17 +114,17 @@ onBeforeUnmount(() => {
           :key="story.id"
           :aria-label="`المدرس ${i + 1}`"
           class="h-2.5 w-2.5 rounded-full transition-all duration-300 ease-out"
-          :class="current === i ? 'scale-125 bg-accent' : 'bg-white/25 hover:bg-white/50'"
+          :class="current === i ? 'scale-125 bg-brand-yellow' : 'bg-hairline hover:bg-slate'"
           @click="goTo(i)"
-        ></button>
+        />
       </div>
-    </div>
+    </Container>
   </section>
 </template>
 
 <style scoped>
-.vignette {
-  background: radial-gradient(ellipse 90% 80% at 50% 40%, transparent 40%, rgba(21, 4, 46, 0.55) 100%);
+.stage {
+  min-height: 420px;
 }
 
 .story-leave-active {
@@ -180,8 +183,8 @@ onBeforeUnmount(() => {
 .glow {
   inset: -25% -20%;
   background:
-    radial-gradient(ellipse 40% 40% at 50% 25%, rgba(97, 185, 249, 0.14), transparent 70%),
-    radial-gradient(ellipse 55% 50% at 50% 65%, rgba(237, 132, 14, 0.22), transparent 70%);
+    radial-gradient(ellipse 40% 40% at 50% 25%, rgba(66, 98, 255, 0.14), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 50% 65%, rgba(255, 208, 47, 0.22), transparent 70%);
   filter: blur(45px);
 }
 
@@ -191,7 +194,7 @@ onBeforeUnmount(() => {
   width: 70%;
   height: 26px;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0, 0, 0, 0.5), transparent 70%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0, 0, 0, 0.4), transparent 70%);
   filter: blur(12px);
 }
 
@@ -199,9 +202,9 @@ onBeforeUnmount(() => {
   position: relative;
   max-width: min(400px, 52vw);
   border-radius: 1.25rem;
-  background: #f5f1e8;
+  background: #ffffff;
   padding: 1rem 1.5rem;
-  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.12));
 }
 
 .bubble::after {
@@ -212,7 +215,7 @@ onBeforeUnmount(() => {
   width: 20px;
   height: 20px;
   border-radius: 3px;
-  background: #f5f1e8;
+  background: #ffffff;
   transform: translateX(50%) rotate(45deg);
 }
 

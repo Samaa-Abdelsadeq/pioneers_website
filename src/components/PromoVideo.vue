@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from 'vue'
+import { Play } from '@lucide/vue'
 import { promoVideo } from '../data/promoVideo'
-import SectionTitle from './SectionTitle.vue'
+import Container from '@/components/layout/Container.vue'
+import SectionHeader from '@/components/layout/SectionHeader.vue'
+import { Button } from '@/components/ui/button'
 import LineIcon from './LineIcon.vue'
 
 const fgEl = ref(null)
@@ -34,17 +37,17 @@ const onSeeked = () => {
 </script>
 
 <template>
-  <section class="bg-dark py-20 lg:py-28">
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <SectionTitle :title="promoVideo.title" :subtitle="promoVideo.subtitle" />
+  <section class="bg-surface py-20 lg:py-28">
+    <Container>
+      <SectionHeader :title="promoVideo.title" :subtitle="promoVideo.subtitle" badge="فيديو" />
 
       <div
         v-reveal
-        class="group relative mx-auto aspect-video w-full max-w-[950px] overflow-hidden rounded-2xl bg-black/40 shadow-2xl ring-1 ring-cta/40 shadow-cta/20"
+        class="group relative mx-auto aspect-video w-full max-w-[950px] overflow-hidden rounded-2xl border border-hairline-soft bg-white shadow-2xl shadow-ink-deep/5"
       >
         <video
           ref="bgEl"
-          class="pointer-events-none absolute inset-0 block h-full w-full scale-110 object-cover object-center blur-3xl brightness-50"
+          class="pointer-events-none absolute inset-0 block h-full w-full scale-110 object-cover object-center blur-3xl brightness-75"
           :src="promoVideo.src || undefined"
           :poster="promoVideo.poster"
           muted
@@ -52,7 +55,7 @@ const onSeeked = () => {
           playsinline
           tabindex="-1"
           aria-hidden="true"
-        ></video>
+        />
 
         <video
           ref="fgEl"
@@ -65,25 +68,23 @@ const onSeeked = () => {
           @play="onPlay"
           @pause="onPause"
           @seeked="onSeeked"
-        ></video>
+        />
 
         <button
           v-if="!playing"
-          class="absolute inset-0 z-20 flex items-center justify-center transition-colors duration-200 hover:bg-dark/20"
+          class="absolute inset-0 z-20 flex items-center justify-center transition-colors duration-200 hover:bg-ink-deep/10"
           :aria-label="promoVideo.src ? 'تشغيل الفيديو' : 'الفيديو هيتضاف قريبًا'"
           @click="play"
         >
-          <span
-            class="flex h-20 w-20 items-center justify-center rounded-full bg-cta text-text shadow-xl shadow-cta/40 transition-transform duration-200 group-hover:scale-110"
-          >
-            <LineIcon name="play" class="h-9 w-9 -translate-x-0.5" />
+          <span class="flex h-20 w-20 items-center justify-center rounded-full bg-brand-yellow text-ink shadow-xl shadow-brand-yellow/30 transition-transform duration-200 group-hover:scale-110">
+            <Play class="h-9 w-9 translate-x-0.5 fill-current" />
           </span>
         </button>
       </div>
 
-      <p v-if="!promoVideo.src" class="mt-4 text-center text-sm text-text/50">
+      <p v-if="!promoVideo.src" class="mt-4 text-center text-sm text-muted-foreground">
         الفيديو التعريفي هيتضاف هنا قريبًا
       </p>
-    </div>
+    </Container>
   </section>
 </template>
