@@ -114,7 +114,7 @@ onBeforeUnmount(() => {
           :key="story.id"
           :aria-label="`المدرس ${i + 1}`"
           class="h-2.5 w-2.5 rounded-full transition-all duration-300 ease-out"
-          :class="current === i ? 'scale-125 bg-brand-yellow' : 'bg-hairline hover:bg-slate'"
+          :class="current === i ? 'scale-125 bg-brand-yellow' : 'bg-slate hover:bg-ink'"
           @click="goTo(i)"
         />
       </div>

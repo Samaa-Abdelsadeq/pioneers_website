@@ -69,7 +69,7 @@ const contacts = [
             </div>
             <h3 class="mt-4 text-lg font-bold">تابعنا</h3>
             <p class="mt-3 text-sm text-white/70">خليك على تواصل مع آخر أخبارنا</p>
-            <Button as-child variant="outline" class="mt-4 w-full rounded-full border-white/30 text-white hover:bg-white hover:text-ink">
+            <Button as-child variant="outline" class="mt-4 w-full rounded-full border-white/30 bg-transparent text-white hover:bg-white hover:text-ink">
               <a :href="siteConfig.social.facebook" target="_blank" rel="noopener">
                 صفحة الفيسبوك
               </a>
