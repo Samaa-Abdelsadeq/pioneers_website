@@ -20,16 +20,16 @@ const handleNavClick = () => {
 </script>
 
 <template>
-  <header class="fixed inset-x-0 top-0 z-50 border-b border-hairline-soft bg-white/80 backdrop-blur-xl">
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-hairline-soft bg-white/85 backdrop-blur-xl">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
       <RouterLink to="/" class="flex items-center gap-3">
         <img
           :src="siteConfig.logo"
           :alt="siteConfig.name"
-          class="h-11 w-11 rounded-full object-cover ring-2 ring-brand-yellow"
+          class="h-10 w-10 rounded-full object-cover ring-2 ring-brand-yellow"
         />
         <div>
-          <span class="text-lg font-extrabold text-foreground">{{ siteConfig.name }}</span>
+          <span class="text-base font-bold text-foreground">{{ siteConfig.name }}</span>
           <span class="block text-[11px] text-muted-foreground">{{ siteConfig.tagline }}</span>
         </div>
       </RouterLink>
@@ -38,7 +38,7 @@ const handleNavClick = () => {
         <li v-for="link in navLinks" :key="link.label">
           <RouterLink
             :to="link.to"
-            class="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+            class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             {{ link.label }}
           </RouterLink>
@@ -64,7 +64,7 @@ const handleNavClick = () => {
           <SheetHeader class="border-b border-hairline-soft pb-4">
             <SheetTitle class="flex items-center gap-3">
               <img :src="siteConfig.logo" :alt="siteConfig.name" class="h-10 w-10 rounded-full object-cover" />
-              <span class="text-lg font-extrabold">{{ siteConfig.name }}</span>
+              <span class="text-lg font-bold">{{ siteConfig.name }}</span>
             </SheetTitle>
           </SheetHeader>
 
@@ -72,7 +72,7 @@ const handleNavClick = () => {
             <SheetClose as-child v-for="link in navLinks" :key="link.label">
               <RouterLink
                 :to="link.to"
-                class="rounded-lg px-3 py-3 text-base font-semibold text-foreground transition-colors hover:bg-muted"
+                class="rounded-lg px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-muted"
                 @click="handleNavClick"
               >
                 {{ link.label }}

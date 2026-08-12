@@ -37,7 +37,7 @@ const onSeeked = () => {
 </script>
 
 <template>
-  <section class="bg-surface py-20 lg:py-28">
+  <section class="bg-white section-spacing">
     <Container>
       <SectionHeader :title="promoVideo.title" :subtitle="promoVideo.subtitle" badge="فيديو" />
 

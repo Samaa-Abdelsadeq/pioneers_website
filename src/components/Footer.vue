@@ -8,18 +8,29 @@ const year = new Date().getFullYear()
 
 const footerLinks = [
   {
-    title: 'روابط سريعة',
+    title: 'الصفحات',
     links: navLinks,
   },
   {
-    title: 'تواصل',
-    links: siteConfig.phones.map((phone, i) => ({
+    title: 'المواد',
+    links: [
+      { label: 'الرياضيات', to: '/#subjects' },
+      { label: 'العلوم', to: '/#subjects' },
+      { label: 'الفيزياء', to: '/#subjects' },
+      { label: 'الأحياء', to: '/#subjects' },
+      { label: 'اللغة الإنجليزية', to: '/#subjects' },
+      { label: 'اللغة الفرنسية', to: '/#subjects' },
+    ],
+  },
+  {
+    title: 'تواصل معنا',
+    links: siteConfig.phones.map((phone) => ({
       label: phone,
       href: `tel:${phone}`,
       external: false,
     })).concat([
-      { label: 'فيسبوك', href: siteConfig.social.facebook, external: true },
       { label: 'واتساب', href: siteConfig.whatsapp[0], external: true },
+      { label: 'فيسبوك', href: siteConfig.social.facebook, external: true },
     ]),
   },
 ]
@@ -29,11 +40,11 @@ const footerLinks = [
   <footer class="bg-footer-bg text-on-dark">
     <Container>
       <div class="grid gap-10 border-b border-white/10 py-16 md:grid-cols-2 lg:grid-cols-4">
-        <div class="lg:col-span-2">
+        <div class="lg:col-span-1">
           <RouterLink to="/" class="flex items-center gap-3">
             <img :src="siteConfig.logo" :alt="siteConfig.name" class="h-12 w-12 rounded-full object-cover ring-2 ring-brand-yellow" />
             <div>
-              <p class="text-lg font-extrabold text-white">{{ siteConfig.name }}</p>
+              <p class="text-lg font-bold text-white">{{ siteConfig.name }}</p>
               <p class="text-xs text-on-dark-muted">{{ siteConfig.tagline }}</p>
             </div>
           </RouterLink>
@@ -70,7 +81,7 @@ const footerLinks = [
         </div>
 
         <div v-for="group in footerLinks" :key="group.title">
-          <h4 class="text-sm font-bold uppercase tracking-wider text-white">{{ group.title }}</h4>
+          <h4 class="text-sm font-bold text-white">{{ group.title }}</h4>
           <ul class="mt-5 space-y-3">
             <li v-for="link in group.links" :key="link.label">
               <RouterLink
@@ -94,8 +105,9 @@ const footerLinks = [
         </div>
       </div>
 
-      <div class="py-6 text-center">
+      <div class="flex flex-col items-center justify-between gap-4 py-6 sm:flex-row">
         <p class="text-sm text-on-dark-muted">© {{ year }} {{ siteConfig.name }} — جميع الحقوق محفوظة</p>
+        <p class="text-sm text-on-dark-muted">كفر الدوار، البحيرة، مصر</p>
       </div>
     </Container>
   </footer>

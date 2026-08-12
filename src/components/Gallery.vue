@@ -5,7 +5,7 @@ import SectionHeader from '@/components/layout/SectionHeader.vue'
 </script>
 
 <template>
-  <section id="gallery" class="bg-surface py-20 lg:py-28">
+  <section id="gallery" class="bg-surface-soft section-spacing">
     <Container>
       <SectionHeader :title="gallerySection.title" :subtitle="gallerySection.subtitle" badge="معرض الصور" />
 

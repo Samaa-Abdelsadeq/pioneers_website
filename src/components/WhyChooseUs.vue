@@ -9,7 +9,7 @@ const cardVariants = ['yellow', 'coral', 'teal']
 </script>
 
 <template>
-  <section class="bg-white py-20 lg:py-28">
+  <section id="why-us" class="bg-white section-spacing">
     <Container>
       <SectionHeader :title="whyChooseUs.title" :subtitle="whyChooseUs.subtitle" badge="لماذا نحن" />
 

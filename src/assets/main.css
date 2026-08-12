@@ -52,6 +52,30 @@
   /* Typography */
   --font-cairo: "Cairo", "Tajawal", sans-serif;
   --font-tajawal: "Tajawal", "Cairo", sans-serif;
+
+  /* Radius scale from DESIGN.md */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 28px;
+  --radius-feature: 32px;
+
+  /* Spacing scale from DESIGN.md */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 40px;
+  --space-section-sm: 48px;
+  --space-section: 64px;
+  --space-section-lg: 96px;
+  --space-hero: 120px;
 }
 
 html {
@@ -184,5 +208,53 @@ body {
   body {
     @apply bg-background text-foreground;
     @apply font-sans;
+  }
+}
+
+@layer utilities {
+  /* Design-system display typography */
+  .hero-display {
+    font-size: clamp(2.25rem, 6vw, 5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+  .display-lg {
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .heading-1 {
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .heading-2 {
+    font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  .heading-3 {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .subtitle {
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* Section spacing following DESIGN.md */
+  .section-spacing {
+    padding-top: clamp(var(--space-section-sm), 8vw, var(--space-section-lg));
+    padding-bottom: clamp(var(--space-section-sm), 8vw, var(--space-section-lg));
+  }
+  .hero-spacing {
+    padding-top: clamp(var(--space-section), 10vw, var(--space-hero));
+    padding-bottom: clamp(var(--space-section-sm), 6vw, var(--space-section));
   }
 }

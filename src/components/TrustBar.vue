@@ -7,7 +7,7 @@ import StatItem from '@/components/ui/StatItem.vue'
 <template>
   <section class="border-y border-hairline-soft bg-surface-soft">
     <Container>
-      <div class="grid grid-cols-2 gap-8 py-12 sm:px-6 lg:grid-cols-4 lg:py-16">
+      <div class="grid grid-cols-2 gap-8 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:py-16">
         <StatItem
           v-for="(stat, i) in stats"
           :key="stat.id"

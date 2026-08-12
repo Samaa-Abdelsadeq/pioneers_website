@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { ArrowLeft } from '@lucide/vue'
+import { ArrowLeft, Play } from '@lucide/vue'
 import { heroContent } from '../data/hero'
 import { ctaLabel, ctaLink } from '../data/siteConfig'
 import { Button } from '@/components/ui/button'
@@ -22,31 +22,46 @@ const parts = computed(() => {
     <Container>
       <div class="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div v-reveal class="text-center lg:text-start">
-          <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-surface px-4 py-1.5 text-sm font-semibold text-muted-foreground">
+          <p class="mb-5 inline-flex items-center gap-2 rounded-full bg-surface px-4 py-1.5 text-sm font-semibold text-muted-foreground">
             <span class="h-2 w-2 rounded-full bg-success-accent" />
             سنتر بيونيرز للتجريبي واللغات
           </p>
 
-          <h1 class="text-4xl font-extrabold leading-[1.1] tracking-tight text-ink-deep sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 class="hero-display text-ink-deep">
             {{ heroContent.headline }}
           </h1>
 
-          <p class="mt-4 text-xl font-bold text-brand-blue sm:text-2xl">{{ heroContent.subheadline }}</p>
+          <p class="mt-5 text-2xl font-medium text-brand-blue sm:text-3xl">{{ heroContent.subheadline }}</p>
 
           <p class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate lg:mx-0">
             {{ parts.before }}<span class="font-bold text-brand-yellow-dark">{{ heroContent.highlightedPhrase }}</span>{{ parts.after }}
           </p>
 
           <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
-            <Button as-child size="lg" class="rounded-full px-8 text-base">
+            <Button as-child size="lg" class="rounded-full px-8 text-base h-12">
               <a :href="ctaLink">{{ ctaLabel }}</a>
             </Button>
-            <Button as-child variant="outline" size="lg" class="rounded-full px-8 text-base">
+            <Button as-child variant="outline" size="lg" class="rounded-full px-8 text-base h-12">
               <RouterLink to="/about">
                 تعرف علينا
                 <ArrowLeft class="ms-2 h-4 w-4" />
               </RouterLink>
             </Button>
+          </div>
+
+          <div class="mt-8 flex items-center justify-center gap-6 text-sm text-slate lg:justify-start">
+            <div class="flex items-center gap-2">
+              <span class="flex h-2 w-2 rounded-full bg-success-accent" />
+              تسجيل مفتوح
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="flex h-2 w-2 rounded-full bg-brand-blue" />
+              مجموعات وبرايفت
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="flex h-2 w-2 rounded-full bg-brand-yellow" />
+              متابعة يومية
+            </div>
           </div>
         </div>
 
@@ -58,6 +73,18 @@ const parts = computed(() => {
               :alt="heroContent.imageAlt"
               class="w-full rounded-[24px] object-cover"
             />
+          </div>
+
+          <div v-reveal="300" class="absolute -bottom-4 -right-4 hidden max-w-[200px] rounded-2xl border border-hairline-soft bg-white p-4 shadow-xl lg:block">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-yellow text-ink">
+                <Play class="h-4 w-4 translate-x-0.5 fill-current" />
+              </div>
+              <div>
+                <p class="text-sm font-bold text-ink">فيديو تعريفي</p>
+                <p class="text-xs text-slate">شوف المركز من جوه</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

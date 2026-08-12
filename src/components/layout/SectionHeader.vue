@@ -24,8 +24,8 @@ defineProps({
     </Badge>
     <h2
       :class="[
-        'font-bold tracking-tight text-foreground',
-        compact ? 'text-2xl sm:text-3xl' : 'text-3xl font-extrabold sm:text-4xl lg:text-5xl',
+        'heading-2 text-ink-deep',
+        compact ? 'text-2xl sm:text-3xl' : '',
       ]"
     >
       {{ title }}

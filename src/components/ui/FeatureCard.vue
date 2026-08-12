@@ -43,7 +43,7 @@ const iconBgClasses = {
       >
         <LineIcon :name="icon" class="h-7 w-7" />
       </div>
-      <h3 class="text-xl font-bold">{{ title }}</h3>
+      <h3 class="heading-3">{{ title }}</h3>
       <p class="mt-3 leading-relaxed opacity-80">{{ description }}</p>
     </CardContent>
   </Card>

@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section id="teachers" class="bg-white py-20 lg:py-28">
+  <section id="teachers" class="bg-surface-soft section-spacing">
     <Container>
       <SectionHeader :title="teachersSection.title" :subtitle="teachersSection.subtitle" badge="المدرسون" />
     </Container>

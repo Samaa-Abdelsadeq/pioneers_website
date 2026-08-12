@@ -27,16 +27,16 @@ const contacts = [
 </script>
 
 <template>
-  <section id="contact" class="bg-white py-20 lg:py-28">
+  <section id="contact" class="bg-white section-spacing">
     <Container>
       <SectionHeader title="تواصل معنا" subtitle="حابب تعرف أكتر؟ إحنا هنا عشان نساعدك." badge="تواصل" />
 
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="grid gap-6 lg:grid-cols-3">
         <Card
           v-for="(contact, i) in contacts"
           :key="contact.title"
           v-reveal="i * 100"
-          class="rounded-2xl border-hairline-soft bg-white text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+          class="rounded-[28px] border-hairline-soft bg-white text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
         >
           <CardContent class="p-6">
             <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-yellow/20 text-foreground">
@@ -61,15 +61,15 @@ const contacts = [
 
         <Card
           v-reveal="300"
-          class="rounded-2xl border-hairline-soft bg-white text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+          class="rounded-[28px] border-hairline-soft bg-ink text-center text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
         >
           <CardContent class="p-6">
-            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-blue/10 text-brand-blue">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-yellow text-ink">
               <LineIcon name="facebook" class="h-7 w-7" />
             </div>
-            <h3 class="mt-4 text-lg font-bold text-foreground">تابعنا</h3>
-            <p class="mt-3 text-sm text-muted-foreground">خليك على تواصل مع آخر أخبارنا</p>
-            <Button as-child variant="outline" class="mt-4 w-full rounded-full">
+            <h3 class="mt-4 text-lg font-bold">تابعنا</h3>
+            <p class="mt-3 text-sm text-white/70">خليك على تواصل مع آخر أخبارنا</p>
+            <Button as-child variant="outline" class="mt-4 w-full rounded-full border-white/30 text-white hover:bg-white hover:text-ink">
               <a :href="siteConfig.social.facebook" target="_blank" rel="noopener">
                 صفحة الفيسبوك
               </a>
@@ -78,7 +78,7 @@ const contacts = [
         </Card>
       </div>
 
-      <Card v-reveal class="mt-8 overflow-hidden rounded-2xl border-hairline-soft">
+      <Card v-reveal class="mt-8 overflow-hidden rounded-[28px] border-hairline-soft">
         <iframe
           v-if="siteConfig.mapEmbedUrl"
           :src="siteConfig.mapEmbedUrl"
