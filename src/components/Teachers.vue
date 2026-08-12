@@ -1,13 +1,12 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { teachers, teachersSection } from '../data/teachers'
-import SectionTitle from './SectionTitle.vue'
-import LineIcon from './LineIcon.vue'
+import Container from '@/components/layout/Container.vue'
+import SectionHeader from '@/components/layout/SectionHeader.vue'
+import TeacherCard from '@/components/ui/TeacherCard.vue'
+import { Button } from '@/components/ui/button'
+import { ArrowLeft } from '@lucide/vue'
 
-// ============================================================
-// MARQUEE SETTINGS — عدّل السرعة من هنا
-// LOOP_SECONDS: مدة اللفة الكاملة لكل كروت المدرسين (بالثواني)
-// ============================================================
 const LOOP_SECONDS = 35
 const COPIES = 4
 
@@ -45,25 +44,12 @@ const autoScroll = (now) => {
   rafId = requestAnimationFrame(autoScroll)
 }
 
-const onMouseEnter = () => {
-  paused = true
-  clearTimeout(resumeTimer)
-}
-
-const onMouseLeave = () => {
-  paused = false
-}
-
-const onTouchStart = () => {
-  paused = true
-  clearTimeout(resumeTimer)
-}
-
+const onMouseEnter = () => { paused = true; clearTimeout(resumeTimer) }
+const onMouseLeave = () => { paused = false }
+const onTouchStart = () => { paused = true; clearTimeout(resumeTimer) }
 const onTouchEnd = () => {
   clearTimeout(resumeTimer)
-  resumeTimer = setTimeout(() => {
-    paused = false
-  }, 1200)
+  resumeTimer = setTimeout(() => { paused = false }, 1200)
 }
 
 onMounted(() => {
@@ -87,10 +73,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section id="teachers" class="bg-primary py-20 lg:py-28">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionTitle :title="teachersSection.title" :subtitle="teachersSection.subtitle" />
-    </div>
+  <section id="teachers" class="bg-surface-soft section-spacing">
+    <Container>
+      <SectionHeader :title="teachersSection.title" :subtitle="teachersSection.subtitle" badge="المدرسون" />
+    </Container>
 
     <div v-reveal class="mx-auto max-w-7xl">
       <div
@@ -103,46 +89,29 @@ onBeforeUnmount(() => {
         @touchend.passive="onTouchEnd"
         @touchcancel.passive="onTouchEnd"
       >
-        <div class="flex w-max gap-6 px-4 py-5 sm:px-6 lg:gap-8 lg:px-8">
+        <div class="flex w-max gap-5 px-4 py-5 sm:px-6 lg:gap-6 lg:px-8">
           <div
             v-for="(teacher, i) in loopedTeachers"
             :key="`${teacher.id}-${i}`"
             :aria-hidden="i >= homepageTeachers.length"
             dir="rtl"
-            class="group w-64 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-dark shadow-xl shadow-black/20 transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:border-cta/50 hover:shadow-cta/10 sm:w-72"
+            class="w-64 shrink-0 sm:w-72"
           >
-            <div class="aspect-square w-full overflow-hidden bg-primary/60">
-              <img
-                v-if="teacher.photo"
-                :src="teacher.photo"
-                :alt="teacher.name"
-                draggable="false"
-                class="h-full w-full object-cover transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-              />
-              <div v-else class="flex h-full w-full items-center justify-center text-cta/40">
-                <LineIcon name="users" class="h-16 w-16" />
-              </div>
-            </div>
-            <div class="p-5 text-center">
-              <h3 class="text-lg font-bold text-text">{{ teacher.name }}</h3>
-              <p class="mt-1 text-sm font-semibold text-accent">{{ teacher.subject }}</p>
-              <p class="mt-1 text-xs text-text/60">{{ teacher.stage }}</p>
-            </div>
+            <TeacherCard :teacher="teacher" />
           </div>
         </div>
       </div>
     </div>
 
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <Container>
       <div v-reveal class="mt-12 text-center">
-        <RouterLink
-          to="/teachers"
-          class="inline-flex items-center gap-2 rounded-full border-2 border-cta px-8 py-3 font-bold text-cta transition-all duration-200 hover:bg-cta hover:text-dark"
-        >
-          {{ teachersSection.ctaLabel }}
-          <LineIcon name="arrow" class="h-5 w-5" />
-        </RouterLink>
+        <Button as-child variant="outline" size="lg" class="rounded-full px-8">
+          <RouterLink to="/teachers">
+            {{ teachersSection.ctaLabel }}
+            <ArrowLeft class="ms-2 h-4 w-4" />
+          </RouterLink>
+        </Button>
       </div>
-    </div>
+    </Container>
   </section>
 </template>

@@ -1,26 +1,47 @@
 <script setup>
 import { subjects, subjectsSection } from '../data/subjects'
-import SectionTitle from './SectionTitle.vue'
+import Container from '@/components/layout/Container.vue'
+import SectionHeader from '@/components/layout/SectionHeader.vue'
+import { Card, CardContent } from '@/components/ui/card'
 import SubjectIcon from './SubjectIcon.vue'
+
+const tints = [
+  'bg-brand-yellow text-ink',
+  'bg-coral-light text-coral-dark',
+  'bg-teal-light text-moss-dark',
+  'bg-rose-light text-ink',
+  'bg-surface-yellow text-yellow-dark',
+]
+
+const stageLabels = ['إعدادي', 'ثانوي', 'إعدادي وثانوي', 'ثانوي', 'إعدادي']
 </script>
 
 <template>
-  <section class="bg-primary py-20 lg:py-28">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <SectionTitle :title="subjectsSection.title" :subtitle="subjectsSection.subtitle" />
+  <section id="subjects" class="bg-white section-spacing">
+    <Container>
+      <SectionHeader :title="subjectsSection.title" :subtitle="subjectsSection.subtitle" badge="المواد" />
 
-      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-5">
-        <div
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-5 lg:gap-6">
+        <Card
           v-for="(subject, i) in subjects"
           :key="subject.id"
           v-reveal="(i % 5) * 80"
-          class="group rounded-2xl border border-white/10 bg-dark p-6 text-center transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:border-cta/60 hover:shadow-lg hover:shadow-cta/15"
+          class="group relative overflow-hidden rounded-[28px] border-hairline-soft bg-white p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
         >
-          <SubjectIcon :name="subject.icon" class="mx-auto h-9 w-9 text-cta transition-colors duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:text-accent" />
-          <p class="mt-4 text-2xl font-black text-accent" dir="ltr">{{ subject.number }}</p>
-          <h3 class="mt-1.5 text-base font-bold text-text sm:text-lg">{{ subject.name }}</h3>
-        </div>
+          <div
+            class="absolute inset-x-0 top-0 h-1.5 transition-colors duration-300"
+            :class="tints[i % tints.length].split(' ')[0]"
+          />
+          <CardContent class="p-0 pt-2">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-surface transition-transform duration-300 group-hover:scale-110">
+              <SubjectIcon :name="subject.icon" class="h-7 w-7 text-foreground" />
+            </div>
+            <p class="mt-4 text-2xl font-semibold tracking-tight text-foreground" dir="ltr">{{ subject.number }}</p>
+            <h3 class="mt-1 text-base font-bold text-foreground sm:text-lg">{{ subject.name }}</h3>
+            <p class="mt-2 text-xs font-medium text-muted-foreground">{{ stageLabels[i % stageLabels.length] }}</p>
+          </CardContent>
+        </Card>
       </div>
-    </div>
+    </Container>
   </section>
 </template>
