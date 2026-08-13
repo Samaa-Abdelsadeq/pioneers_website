@@ -1,7 +1,8 @@
 <script setup>
-import { computed } from 'vue'
-import { ArrowLeft, Play } from '@lucide/vue'
+import { computed, ref, watch, onBeforeUnmount } from 'vue'
+import { ArrowLeft, Play, X } from '@lucide/vue'
 import { heroContent } from '../data/hero'
+import { promoVideo } from '../data/promoVideo'
 import { ctaLabel, ctaLink } from '../data/siteConfig'
 import { Button } from '@/components/ui/button'
 import Container from '@/components/layout/Container.vue'
@@ -9,6 +10,23 @@ import Container from '@/components/layout/Container.vue'
 const parts = computed(() => {
   const [before, after] = heroContent.supporting.split(heroContent.highlightedPhrase)
   return { before, after }
+})
+
+const videoOpen = ref(false)
+
+const onKeydown = (e) => {
+  if (e.key === 'Escape') videoOpen.value = false
+}
+
+watch(videoOpen, (open) => {
+  document.body.style.overflow = open ? 'hidden' : ''
+  if (open) window.addEventListener('keydown', onKeydown)
+  else window.removeEventListener('keydown', onKeydown)
+})
+
+onBeforeUnmount(() => {
+  document.body.style.overflow = ''
+  window.removeEventListener('keydown', onKeydown)
 })
 </script>
 
@@ -75,7 +93,13 @@ const parts = computed(() => {
             />
           </div>
 
-          <div v-reveal="300" class="absolute -bottom-4 -right-4 hidden max-w-[200px] rounded-2xl border border-hairline-soft bg-white p-4 shadow-xl lg:block">
+          <button
+            v-reveal="300"
+            type="button"
+            class="absolute -bottom-4 -right-4 hidden max-w-[200px] rounded-2xl border border-hairline-soft bg-white p-4 text-start shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl lg:block"
+            aria-label="تشغيل الفيديو التعريفي"
+            @click="videoOpen = true"
+          >
             <div class="flex items-center gap-3">
               <div class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-yellow text-ink">
                 <Play class="h-4 w-4 translate-x-0.5 fill-current" />
@@ -85,9 +109,48 @@ const parts = computed(() => {
                 <p class="text-xs text-slate">شوف المركز من جوه</p>
               </div>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </Container>
+
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition duration-300 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition duration-200 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div
+          v-if="videoOpen"
+          class="fixed inset-0 z-[100] flex items-center justify-center bg-ink-deep/80 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="الفيديو التعريفي"
+          @click.self="videoOpen = false"
+        >
+          <div class="relative w-full max-w-sm overflow-hidden rounded-[28px] bg-black shadow-2xl">
+            <button
+              type="button"
+              class="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink transition-colors hover:bg-white"
+              aria-label="إغلاق الفيديو"
+              @click="videoOpen = false"
+            >
+              <X class="h-5 w-5" />
+            </button>
+            <video
+              :src="promoVideo.src"
+              :poster="promoVideo.poster"
+              class="max-h-[80vh] w-full object-contain"
+              controls
+              autoplay
+              playsinline
+            ></video>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </section>
 </template>

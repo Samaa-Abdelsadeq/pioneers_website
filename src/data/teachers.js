@@ -155,7 +155,7 @@ export const teachers = [
     stage: 'إعدادي / ثانوي',
     bio: 'نبذة قصيرة عن المدرس وطريقة شرحه.',
     experienceYears: 10,
-    photo: null, 
+    photo: 'images/yasser_teacher.jpeg', 
     phone: '01229232626', 
     showOnHomepage: false,
   },

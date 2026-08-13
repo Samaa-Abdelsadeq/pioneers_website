@@ -29,9 +29,9 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
                 program.featured ? 'bg-surface-lavender' : 'bg-white',
               ]"
             >
-            <div v-if="program.featured" class="absolute top-5 right-5 rounded-full bg-brand-yellow px-3 py-1 text-xs font-bold text-ink">
+            <span v-if="program.featured" class="mb-4 inline-block rounded-full bg-brand-yellow px-3 py-1 text-xs font-bold text-ink">
               الأكثر طلبًا
-            </div>
+            </span>
 
             <CardHeader class="p-0 mb-6">
               <h3 class="heading-3 text-ink">{{ program.name }}</h3>
@@ -39,11 +39,6 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
             </CardHeader>
 
             <CardContent class="p-0">
-              <div class="mb-6">
-                <span class="text-3xl font-semibold tracking-tight text-ink">{{ program.price }}</span>
-                <span class="mr-2 text-sm text-slate">/ {{ program.period }}</span>
-              </div>
-
               <ul class="mb-8 space-y-3">
                 <li v-for="feature in program.features" :key="feature" class="flex items-start gap-3 text-sm text-ink">
                   <span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-yellow/20 text-ink">

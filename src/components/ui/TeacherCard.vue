@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-  <Card class="group overflow-hidden rounded-2xl border border-hairline-soft bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+  <Card class="group gap-0 overflow-hidden rounded-2xl border border-hairline-soft bg-card py-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
     <div class="aspect-square w-full overflow-hidden bg-muted">
       <img
         v-if="teacher.photo"

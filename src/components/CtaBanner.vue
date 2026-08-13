@@ -20,10 +20,10 @@ import { Button } from '@/components/ui/button'
             احجز مكانك دلوقتي وانضم لأكبر مجتمع طلابي في كفر الدوار. خصومات على التسجيل المبكر.
           </p>
           <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button as-child size="lg" class="rounded-full bg-white px-8 text-ink hover:bg-white/90 h-12">
+            <Button as-child size="lg" class="rounded-full bg-white px-8 text-ink hover:bg-white/90! h-12">
               <a :href="ctaLink">{{ ctaLabel }}</a>
             </Button>
-            <Button as-child variant="outline" size="lg" class="rounded-full border-white/30 bg-transparent px-8 text-white hover:bg-white/10 hover:text-white h-12">
+            <Button as-child variant="outline" size="lg" class="rounded-full border-white/30 bg-transparent px-8 text-white hover:bg-white/10! hover:text-white! h-12">
               <RouterLink to="/about">
                 تعرف علينا
                 <ArrowLeft class="ms-2 h-4 w-4" />

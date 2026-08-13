@@ -8,13 +8,13 @@ export const teacherStories = [
   {
     id: 1,
     name: 'اسم المدرس 1',
-    photo: '/images/NoBg/A_soliman_teacher.png',
+    photo: '/images/NoBg/soliman_teacher.png',
     phrase: 'بنعلّم الطالب يفكر ويحل، مش يحفظ ويكرر ',
   },
   {
     id: 2,
     name: 'اسم المدرس 2',
-    photo: '/images/NoBg/Alaa_teacher.png',
+    photo: '/images/NoBg/Alaa_2_teacher.png',
     phrase: 'طلابنا من الأوائل كل سنة... ونجاحهم هو أكبر دليل على تعبنا',
   },
   {
@@ -26,7 +26,7 @@ export const teacherStories = [
   {
     id: 4,
     name: 'اسم المدرس 4',
-    photo: '/images/NoBg/M_Magdy_teacher.png',
+    photo: '/images/NoBg/M_Magdy_2_teacher.png',
     phrase: 'أجمل لحظة عندنا لما نشوف تعب الطالب اتحول لنجاح',
   },
   {
